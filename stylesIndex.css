@@ -1,0 +1,40 @@
+/* Css for header */
+header{
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    height: 60px;
+    justify-content: start;
+}
+
+li{
+    float: left;
+    padding: 15px;
+    list-style-type: none;
+    height: 100%;
+}
+
+ul.navBar{
+    padding-left: 10px;
+    margin: 0px;
+}
+
+li:hover{
+    background-color: rgb(164, 164, 164);
+}
+
+li a{
+    color: white;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.main-content{
+    margin-top: 75px;
+}
