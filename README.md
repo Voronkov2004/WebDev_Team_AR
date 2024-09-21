@@ -1,6 +1,9 @@
 # WebDev_Team_AR
 
 Members of AR team:
-Anton Voronkov \n
+
+Anton Voronkov 
+
 Jessenia Tsenkman
+
 Milena Petrova
