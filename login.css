@@ -1,0 +1,104 @@
+body {
+    font-family: "Lucida Console", "Courier New";
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    overflow: hidden; /* Disables scrolling */
+    height: 100%;
+}
+/* ID selector */
+#home {
+    font-weight: bold;
+}
+
+/* Pseudo-element */
+h1::before {
+    content: "Welcome ";
+}
+/* Child selector */
+nav > ul {
+    display: flex;
+    justify-content: space-between;
+    background-color: #c1c1c1dd;
+    padding: 8px;
+    margin: 5px;
+    list-style-type: none;
+    align-items: center; 
+    border-radius: 15px;
+}
+nav ul li {
+    padding: 8px;
+    font-size:21px;
+    text-decoration: none; 
+}
+
+nav ul li a {
+    text-decoration: none;  /* Removes the underline */
+    color: rgb(0, 0, 0);          /* Keeps the link color */
+    font-size: 18px;      /* Adjust the font size as necessary */
+}
+nav ul li a:hover {
+    color: #46b8e1;
+}
+.container {
+    display: flex;
+    justify-content: center; /*centers the child elements horizontally within the container.*/
+    align-items: center; /*centers the child elements vertically within the container.*/
+    height: 100vh;
+}
+.login-box h1{
+    font-size: medium;
+    padding-bottom: 10px;
+}
+.login-box {
+    background-color: #e2e2e2;
+    padding: 5px 40px 10px 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+/* Class Selector */
+.create-account {
+    color: #46b8e1;
+    text-decoration: none;
+}
+/* Descendant selector */
+.login-box a {
+    display: block;
+    text-decoration: none;
+    color: #46b8e1;
+}
+
+form {
+    display: flex;
+    flex-direction: column;   /* Stack form elements vertically */
+    align-items: center;      /* Center the form elements */
+}
+/* Input fields styling */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 90px;
+    font-family: "Lucida Console";
+    padding: 5px;
+    margin: 2px;
+    height: 20px;
+    border: 1px solid #cccccc;
+}
+
+.login-box button {
+    background-color: #2d748e;
+    color: white;
+    margin: 12px;
+    border: none;
+    padding: 6px;
+    width: 70px;
+    cursor: pointer;
+}
+
+
+
+/* Adjacent sibling selector */
+
+
+/* General sibling selector */
+
