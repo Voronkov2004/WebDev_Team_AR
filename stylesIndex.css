@@ -1,4 +1,10 @@
-/* Css for header */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html{
     margin: 0;
     padding: 0;
@@ -6,11 +12,64 @@ html{
     font-family: Arial, sans-serif;
 }
 
+main{
+    margin-top: 90px;
+    margin-left: calc(20% + 20px);
+    margin-right: calc(20% + 20px);
+    width: calc(60% - 40px);
+    box-sizing: border-box;
+}
+
 body{
     margin: 0;
     padding: 0;
     height: 100%;
 }
+
+.blogPost{
+    border: 3px solid black;
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.blogPost > img {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+}
+
+.blogPost > h1{
+    padding: 20px;
+}
+
+.blogPost > p{
+    padding: 20px;
+}
+
+.postNav{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    height: 10%;
+    align-items: center;
+}
+
+.postNav > img {
+    width: 90px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.postNav > p{
+    color: white;
+    font-size: 1.5em;
+}
+
 
 header{
     background-color: #333;
@@ -22,9 +81,20 @@ header{
     align-items: center;
     margin-bottom: 15px;
     height: 80px;
-    justify-content: start;
+    justify-content: space-between;
 }
 
+header img {
+    width: 100px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+
+.left-side, .right-side{
+    display: flex;
+    align-items: center;
+}
 
 li{
     float: left;
@@ -33,9 +103,16 @@ li{
 }
 
 .navBar{
-    padding-left: 10px;
-    margin: 0px;
-    z-index: 1000;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-color: black;
+    border: 0, 0, 0, 10px;
+
 }
 
 li:hover{
@@ -51,18 +128,19 @@ li a{
 
 aside.leftSide,
 aside.rightSide {
-    position:static; /* Avoid absolute positioning */
+    padding: 20px;
+    position: fixed;
     background-color: black;
-    width: 20rem;
-    height: 100vh; /* Full height of the screen */
+    width: 20%;
+    height: 100vh;
     z-index: 5;
     top: 80px;
 
 }
 aside.leftSide {
-    float: left; /* Left alignment */
+    left: 0;
 }
 
 aside.rightSide {
-    float: right; /* Right alignment */
+    right: 0;
 }
