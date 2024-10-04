@@ -124,6 +124,7 @@ li a{
     display: block;
     text-decoration: none;
     text-align: center;
+    width: 100%;
 }
 
 aside.leftSide,
