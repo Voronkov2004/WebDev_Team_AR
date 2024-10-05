@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 header img {
@@ -86,6 +87,7 @@ form {
 }
 
 label {
+    font-family: "Lucida Console", "Courier New";
     font-size: 16px;
 }
 
