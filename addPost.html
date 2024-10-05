@@ -34,11 +34,19 @@
                 <label for="file-upload">Select file</label>
                 <input type="file" id="file-upload" name="file-upload">
             </div>
-
-            <button type="submit">Create post</button>
             
+            
+            <button type="submit">Create post</button>
+           
             
         </form>
     </div>
+
+    <script>
+        function redirectToHome(event) {
+            event.preventDefault();  
+            window.location.href = "index.html";  
+        }
+    </script>
 </body>
 </html>
