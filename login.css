@@ -16,30 +16,62 @@ h1::before {
     content: "Welcome ";
 }
 /* Child selector */
-nav > ul {
+header{
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    height: 80px;
     justify-content: space-between;
-    background-color: #c1c1c1dd;
-    padding: 8px;
-    margin: 5px;
-    list-style-type: none;
-    align-items: center; 
-    border-radius: 15px;
-}
-nav ul li {
-    padding: 8px;
-    font-size:21px;
-    text-decoration: none; 
 }
 
-nav ul li a {
-    text-decoration: none;  /* Removes the underline */
-    color: rgb(0, 0, 0);          /* Keeps the link color */
-    font-size: 18px;      /* Adjust the font size as necessary */
+header img {
+    width: 100px;
+    height: 60px;
+    border-radius: 50%;
 }
-nav ul li a:hover {
-    color: #46b8e1;
+
+
+.left-side, .right-side{
+    display: flex;
+    align-items: center;
 }
+
+li{
+    float: left;
+    padding: 15px;
+    list-style-type: none;
+}
+
+.navBar{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-color: black;
+    border: 0, 0, 0, 10px;
+
+}
+
+li:hover{
+    background-color: rgb(164, 164, 164);
+}
+
+li > a{
+    color: white;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+}
+
 .container {
     display: flex;
     justify-content: center; /*centers the child elements horizontally within the container.*/
@@ -50,17 +82,14 @@ nav ul li a:hover {
     font-size: medium;
     padding-bottom: 10px;
 }
+/* Class Selector */
 .login-box {
     background-color: #e2e2e2;
     padding: 5px 40px 10px 40px;
     border-radius: 10px;
     text-align: center;
 }
-/* Class Selector */
-.create-account {
-    color: #46b8e1;
-    text-decoration: none;
-}
+
 /* Descendant selector */
 .login-box a {
     display: block;
@@ -95,10 +124,14 @@ input[type="email"] {
     cursor: pointer;
 }
 
-
-
 /* Adjacent sibling selector */
-
+h1 + a.create-account {
+    color: #46b8e1;   /* Turns the 'Create an account' link red */
+    font-weight: bold;
+}
 
 /* General sibling selector */
+h1 ~ p {
+    font-style: italic;
+}
 
