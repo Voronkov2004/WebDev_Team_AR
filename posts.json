@@ -1,0 +1,72 @@
+[
+    {
+      "id": 1,
+      "author": "Dexter Morgan",
+      "timestamp": "2022-10-22T10:00:00Z",
+      "text": "Exploring Tartu!",
+      "image": "tartu.png"
+    },
+    {
+      "id": 2,
+      "author": "Miguel Prado",
+      "timestamp": "2022-10-21T15:45:00Z",
+      "text": "Had a great day in the city center.",
+      "image": "cityCenter.png"
+    },
+    {
+      "id": 3,
+      "author": "Artur Mitchell",
+      "timestamp": "2022-10-20T09:30:00Z",
+      "text": "Good morning everyone!",
+      "image": "GM.png"
+    },
+    {
+        "id": 4,
+        "author": "Jesse Pinkman",
+        "timestamp": "2022-10-20T08:15:00Z",
+        "text": "My breakfast!",
+        "image": "Jfood.png"
+    },
+    {
+        "id": 5,
+        "author": "Walter White",
+        "timestamp": "2022-10-19T12:00:00Z",
+        "text": "Happy Birthday To Me!",
+        "image": "BD.png"
+    },
+    {
+        "id": 6,
+        "author": "Gus Fring",
+        "timestamp": "2022-10-18T18:30:00Z",
+        "text": "Best Place to Eat",
+        "image": "Gus.png"
+    },
+    {
+        "id": 7,
+        "author": "Joey Quinn",
+        "timestamp": "2022-10-17T22:45:00Z",
+        "text": "Good Night",
+        "image": "GN.png"
+    },
+    {
+        "id": 8,
+        "author": "Hank Schrader",
+        "timestamp": "2022-10-16T06:30:00Z",
+        "text": "Woow",
+        "image": "wow.png"
+    },
+    {
+        "id": 9,
+        "author": "Maria LaGuerta",
+        "timestamp": "2022-10-15T14:15:00Z",
+        "text": "Best Day Ever!",
+        "image": "bestDay.png"
+    },
+    {
+        "id": 10,
+        "author": "Angel Batista",
+        "timestamp": "2022-10-14T17:00:00Z",
+        "text": "Love you",
+        "image": "love.png"
+    }
+]
