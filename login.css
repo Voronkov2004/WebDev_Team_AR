@@ -15,7 +15,7 @@ body {
 h1::before {
     content: "Welcome ";
 }
-/* Child selector */
+
 header{
     background-color: #333;
     position: fixed;
@@ -63,7 +63,7 @@ li{
 li:hover{
     background-color: rgb(164, 164, 164);
 }
-
+/* Child selector */
 li > a{
     color: white;
     display: block;
@@ -134,4 +134,32 @@ h1 + a.create-account {
 h1 ~ p {
     font-style: italic;
 }
+
+.dropdown-menu {
+    display: none; 
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 12px;
+  
+}
+.dropdown-menu p {
+    color: black;
+    padding: 4px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-menu a{
+    color: black;
+    padding: 4px;
+    text-decoration: none;
+    display: block;
+}
+
+
+
 
