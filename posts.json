@@ -3,7 +3,7 @@
     "postID": 1,
     "postAuthorName": "Dexter Morgan",
     "postAuthorPFP": "",
-    "postCreated": "2022-10-22T10:00:00Z",
+    "postCreated": "2024-10-22T10:00:00Z",
     "postText": "Exploring Tartu!",
     "postImage": "images/tartu.png"
   },
@@ -11,7 +11,7 @@
     "postID": 2,
     "postAuthorName": "Miguel Prado",
     "postAuthorPFP": "",
-    "postCreated": "2022-10-21T15:45:00Z",
+    "postCreated": "2024-10-21T15:45:00Z",
     "postText": "Had a great day in the city center.",
     "postImage": "images/cityCenter.png"
   },
@@ -19,7 +19,7 @@
     "postID": 3,
     "postAuthorName": "Artur Mitchell",
     "postAuthorPFP": "",
-    "postCreated": "2022-10-20T09:30:00Z",
+    "postCreated": "2024-10-20T09:30:00Z",
     "postText": "Good morning everyone!",
     "postImage": "images/GM.png"
   },
