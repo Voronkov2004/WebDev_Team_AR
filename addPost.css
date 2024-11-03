@@ -24,6 +24,7 @@ header{
     margin-bottom: 15px;
     height: 80px;
     justify-content: space-between;
+    z-index: 10;
 }
 
 li{
@@ -136,12 +137,69 @@ button:hover {
     }
 }
 
+
+.postNav {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    color: white;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
 .user-icon {
     width: 40px;
     height: 40px;
-    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.blogPost {
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.author-name {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+    text-align: left;
 }
 
 
-
-
+.dropdown-menu {
+    display: none; 
+    position: absolute;
+    top: 100%; 
+    right: 0;
+    background-color: white;
+    min-width: 150px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    padding: 4px;
+  
+}
+.dropdown-menu p {
+    color: black;
+    padding: 15px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-menu a{
+    color: black;
+    padding: 15px;
+    text-decoration: none;
+    display: block;
+}

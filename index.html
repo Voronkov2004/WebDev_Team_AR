@@ -10,14 +10,22 @@
 </head>
 <body>
     <header>
-        <ul id="navBar">
+        <ul class="navBar">
             <div class="left-side">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="addPost.html">Add Post</a></li>
                 <li><a href="login.html">Login</a></li>
             </div>
             <div class="right-side">
-                <a href="pfp.html"><img src="images/me.png" alt="Account Picture"></a>
+                
+                <div class="dropdown">
+                    <img src="images/me.png" alt="Account Picture" class="profile-icon">
+                    <div class="dropdown-menu">
+                        <p>John Donkey</p>
+                        <p>farmer@ut.ee</p>
+                        <a href="logout.html">Logout</a>
+                    </div>
+                </div>
             </div>
         </ul>
     </header>
@@ -103,6 +111,9 @@
             </a>
         </div>
     </footer>
+    <script src="dropdown.js"></script>
+    <script src="script.js"></script>
+
         
 </body>
 </html>
