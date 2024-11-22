@@ -76,5 +76,6 @@ footer {
 .rightFot > a {
   color: white;
   text-decoration: none;
+  gap: 10px;
 }
 </style>

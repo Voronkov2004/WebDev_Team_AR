@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .postFooter {
   width: 100%;
   display: flex;

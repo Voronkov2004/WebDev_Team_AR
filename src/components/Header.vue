@@ -2,9 +2,9 @@
   <header>
     <ul class="navBar">
       <div class="left-side">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="addPost.html">Add Post</a></li>
-        <li><a href="login.html">Login</a></li>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/addpost">Add Post</router-link></li>
+        <li><router-link to="/login">Login</router-link></li>
       </div>
       <div class="right-side">
         <Dropdown></Dropdown>
