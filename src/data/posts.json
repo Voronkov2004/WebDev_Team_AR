@@ -1,0 +1,82 @@
+[
+  {
+    "postID": 1,
+    "postAuthorName": "Dexter Morgan",
+    "postAuthorPFP": "images/dexter.png",
+    "postCreated": "2024-10-22T10:00:00Z",
+    "postText": "Exploring Tartu!",
+    "postImage": "images/tartu.png"
+  },
+  {
+    "postID": 2,
+    "postAuthorName": "Miguel Prado",
+    "postAuthorPFP": "images/miguel.png",
+    "postCreated": "2024-10-21T15:45:00Z",
+    "postText": "Had a great day in the city center.",
+    "postImage": "images/cityCenter.png"
+  },
+  {
+    "postID": 3,
+    "postAuthorName": "Artur Mitchell",
+    "postAuthorPFP": "images/artur.png",
+    "postCreated": "2024-10-20T09:30:00Z",
+    "postText": "Good morning everyone!",
+    "postImage": "images/GM.png"
+  },
+  {
+    "postID": 4,
+    "postAuthorName": "Jesse Pinkman",
+    "postAuthorPFP": "images/jesse.png",
+    "postCreated": "2024-10-20T08:15:00Z",
+    "postText": "My breakfast!",
+    "postImage": "images/Jfood.png"
+  },
+  {
+    "postID": 5,
+    "postAuthorName": "Walter White",
+    "postAuthorPFP": "images/walter.png",
+    "postCreated": "2024-10-19T12:00:00Z",
+    "postText": "Happy Birthday To Me!",
+    "postImage": "images/BD.png"
+  },
+  {
+    "postID": 6,
+    "postAuthorName": "Gus Fring",
+    "postAuthorPFP": "images/gusSelfie.png",
+    "postCreated": "2024-10-18T18:30:00Z",
+    "postText": "Best Place to Eat",
+    "postImage": "images/Gus.png"
+  },
+  {
+    "postID": 7,
+    "postAuthorName": "Joey Quinn",
+    "postAuthorPFP": "images/joey.png",
+    "postCreated": "2024-10-17T22:45:00Z",
+    "postText": "Good Night",
+    "postImage": "images/GN.png"
+  },
+  {
+    "postID": 8,
+    "postAuthorName": "Hank Schrader",
+    "postAuthorPFP": "images/hank.png",
+    "postCreated": "2024-10-16T06:30:00Z",
+    "postText": "Woow",
+    "postImage": "images/wow.png"
+  },
+  {
+    "postID": 9,
+    "postAuthorName": "Maria LaGuerta",
+    "postAuthorPFP": "images/maria.png",
+    "postCreated": "2024-10-15T14:15:00Z",
+    "postText": "Best Day Ever!",
+    "postImage": "images/bestDay.png"
+  },
+  {
+    "postID": 10,
+    "postAuthorName": "Angel Batista",
+    "postAuthorPFP": "images/angel.png",
+    "postCreated": "2024-10-14T17:00:00Z",
+    "postText": "Love you",
+    "postImage": "images/love.png"
+  }
+]
