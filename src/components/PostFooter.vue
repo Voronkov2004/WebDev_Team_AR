@@ -15,15 +15,16 @@ export default {
   props: {
     textPost: String,
     authorName: String,
+    likes: Number,
   },
-  data() {
+  /*data() {
     return {
       likes: 0,
     };
-  },
+  },*/
   methods: {
     incrementLikes() {
-      this.likes += 1;
+      this.$emit("increment-like"); 
     },
   },
 };

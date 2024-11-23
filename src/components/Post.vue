@@ -2,7 +2,12 @@
   <article class="blogPost">
     <PostNav :pfp="pfp" :pfpAlt="pfpAlt" :postedDate="postedDate" />
     <img :src="postPicture" :alt="postPictureAlt" class="post-image" />
-    <PostFooter :textPost="textPost" :authorName="authorName" />
+    <PostFooter 
+    :textPost="textPost" 
+    :authorName="authorName" 
+    :likes="likes" 
+    @increment-like="incrementLikes"
+    />
   </article>
 </template>
 
@@ -24,6 +29,12 @@ export default {
     pfp: String,
     pfpAlt: String,
     postedDate: String,
+    likes: Number,
+  },
+  methods: {
+    incrementLikes() {
+      this.$emit("increment-like"); 
+    },
   },
 };
 </script>
