@@ -38,4 +38,5 @@ export default {
   font-size: 1.2em;
   display: flex;
 }
+
 </style>

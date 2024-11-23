@@ -31,6 +31,25 @@ export default {
 </script>
 
 <style scoped>
+.postFooter h1 {
+  font-family: "Roboto", sans-serif; 
+  font-size: 20px; 
+  font-weight: 100; 
+  color: #333; 
+  text-align: center; 
+  margin: 0px 0; 
+}
+
+.postFooter p {
+  font-family: "Roboto", sans-serif; 
+  font-size: 20px; 
+  font-weight: 100; 
+  color: #333;
+  text-align: center; 
+  margin: 0px 0; 
+}
+
+
 .postFooter {
   width: 100%;
   display: flex;
@@ -61,4 +80,5 @@ button:hover {
   font-size: 1.2em;
   color: #555;
 }
+
 </style>

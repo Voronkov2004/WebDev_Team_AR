@@ -93,19 +93,23 @@ export default {
   align-items: center;
   min-height: 100vh; 
   background-color: #f7f7f7;
-  padding: 20px; 
-  box-sizing: border-box;
+  padding: 80px; 
+  box-sizing: center;
 }
 
 .login-box {
   background: white;
-  padding: 20px;
+  padding: 60px;
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px; 
+  max-width: 500px; 
   text-align: center;
   box-sizing: border-box; 
+  
+}
+form {
+  margin-left: -30px; 
 }
 
 
@@ -117,7 +121,7 @@ export default {
 
 input[type="email"],
 input[type="password"] {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;

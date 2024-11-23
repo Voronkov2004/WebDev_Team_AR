@@ -3,12 +3,13 @@
     <PostNav :pfp="pfp" :pfpAlt="pfpAlt" :postedDate="postedDate" />
     <img :src="postPicture" :alt="postPictureAlt" class="post-image" />
     <PostFooter 
-    :textPost="textPost" 
-    :authorName="authorName" 
-    :likes="likes" 
-    @increment-like="incrementLikes"
+      :textPost="textPost" 
+      :authorName="authorName" 
+      :likes="likes" 
+      @increment-like="incrementLikes"
     />
   </article>
+  
 </template>
 
 <script>
@@ -33,33 +34,34 @@ export default {
   },
   methods: {
     incrementLikes() {
-      this.$emit("increment-like"); 
+      this.$emit("increment-like");
     },
   },
 };
 </script>
 
 <style scoped>
+
 .blogPost {
   border: 3px solid black;
   border-radius: 10px;
-  width: 100%;
+  width: 80%;
+  max-width: 800px;
+  margin: 10px ;
   display: flex;
   flex-direction: column;
-  margin-bottom: 30px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
 }
 
 .blogPost > img {
-  width: 100%;
+  width: 90%;
   height: auto;
   padding: 10px;
+  
 }
 
-.blogPost > h1 {
-  padding: 20px;
-}
 
-.blogPost > p {
-  padding: 20px;
-}
+
 </style>
