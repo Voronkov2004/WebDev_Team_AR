@@ -1,30 +1,33 @@
 <template>
   <div class="container">
     <div class="login-box">
-      <h1>Welcome to PostIt</h1>
-      <a href="#" class="create-account">Create an account</a>
-      <p>or Please log in</p>
+      <h1>PostIt</h1>
 
-      <form action="index.html" method="GET">
+      <form @submit.prevent="validatePassword">
+        
         <input
           type="email"
           id="email"
           name="email"
           placeholder="Email"
+          v-model="email"
           required
         />
 
+       
         <input
           type="password"
           id="password"
           name="password"
           placeholder="Password"
+          v-model="password"
+          @input="clearPasswordError" 
           required
         />
 
         <button type="submit">Log in</button>
       </form>
-      <a href="#" class="forgot-password">Forget password</a>
+      <a href="#" class="forgot-password">Forgot password?</a>
     </div>
   </div>
 </template>
@@ -32,77 +35,120 @@
 <script>
 export default {
   name: "LoginComponent",
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    
+    validatePassword(event) {
+      const passwordField = event.target.querySelector("#password");
+      const password = this.password;
+
+      
+      let errorMessage = "";
+
+      if (password.length < 8 || password.length >= 15) {
+        errorMessage += "Password must be 8-14 characters long.\n";
+      }
+      if (!/^[A-Z]/.test(password)) {
+        errorMessage += "Password must start with an uppercase letter.\n";
+      }
+      if (!/[A-Z]/.test(password)) {
+        errorMessage += "Password must include at least one uppercase letter.\n";
+      }
+      if ((password.match(/[a-z]/g) || []).length < 2) {
+        errorMessage += "Password must include at least two lowercase letters.\n";
+      }
+      if (!/\d/.test(password)) {
+        errorMessage += "Password must include at least one numeric value.\n";
+      }
+      if (!/_/.test(password)) {
+        errorMessage += "Password must include the character '_'.\n";
+      }
+
+      
+      if (errorMessage) {
+        passwordField.setCustomValidity(errorMessage);
+        passwordField.reportValidity(); 
+      } else {
+        passwordField.setCustomValidity(""); 
+        alert("Password is valid!"); 
+      }
+    },
+
+    clearPasswordError(event) {
+      event.target.setCustomValidity(""); 
+    },
+  },
 };
 </script>
+
 <style>
 .container {
   display: flex;
-  justify-content: center; /*centers the child elements horizontally within the container.*/
-  align-items: center; /*centers the child elements vertically within the container.*/
-  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  background-color: #f7f7f7;
+  padding: 20px; 
+  box-sizing: border-box;
 }
-.login-box h1 {
-  font-size: medium;
-  padding-bottom: 10px;
-}
-/* Class Selector */
+
 .login-box {
-  background-color: #e2e2e2;
-  padding: 5px 40px 10px 40px;
-  border-radius: 10px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; 
   text-align: center;
+  box-sizing: border-box; 
 }
 
-/* Descendant selector */
-.login-box a {
-  display: block;
-  text-decoration: none;
-  color: #46b8e1;
+
+.login-box h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #2d748e;
 }
 
-form {
-  display: flex;
-  flex-direction: column; /* Stack form elements vertically */
-  align-items: center; /* Center the form elements */
-}
-/* Input fields styling */
-input[type="text"],
-input[type="password"],
-input[type="email"] {
-  width: 90px;
-  font-family: "Lucida Console";
-  padding: 5px;
-  margin: 2px;
-  height: 20px;
-  border: 1px solid #cccccc;
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
 }
 
-.login-box button {
+button {
+  width: 100%;
+  padding: 10px;
   background-color: #2d748e;
-  color: white;
-  margin: 12px;
   border: none;
-  padding: 6px;
-  width: 70px;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
 }
 
-/* Adjacent sibling selector */
-h1 + a.create-account {
-  color: #46b8e1; /* Turns the 'Create an account' link red */
-  font-weight: bold;
+button:hover {
+  background-color: #24607a;
 }
 
-/* General sibling selector */
-h1 ~ p {
-  font-style: italic;
-}
-
-li > a {
-  color: white;
+.forgot-password {
   display: block;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #2d748e;
   text-decoration: none;
-  text-align: center;
-  width: 100%;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
 }
 </style>
