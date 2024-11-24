@@ -92,7 +92,7 @@ export default {
   justify-content: center;
   align-items: center;
   min-height: 100vh; 
-  background-color: #f7f7f7;
+  background-color: #4a4a4a;
   padding: 80px; 
   box-sizing: center;
 }
@@ -116,7 +116,7 @@ form {
 .login-box h1 {
   font-size: 24px;
   margin-bottom: 20px;
-  color: #2d748e;
+  color: #7a2828;
 }
 
 input[type="email"],
@@ -132,7 +132,7 @@ input[type="password"] {
 button {
   width: 100%;
   padding: 10px;
-  background-color: #2d748e;
+  background-color: #7a2828;
   border: none;
   border-radius: 4px;
   color: white;
@@ -141,14 +141,14 @@ button {
 }
 
 button:hover {
-  background-color: #24607a;
+  background-color: #8e3030;
 }
 
 .forgot-password {
   display: block;
   margin-top: 15px;
   font-size: 14px;
-  color: #2d748e;
+  color: #7a2828;
   text-decoration: none;
 }
 

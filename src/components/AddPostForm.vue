@@ -1,4 +1,5 @@
 <template>
+<div class = container>
   <div class="post-container">
     <form id="add-post-form" action="index.html" method="GET">
       <div class="form-group">
@@ -12,6 +13,7 @@
       <button type="submit">Create post</button>
     </form>
   </div>
+</div>
 </template>
 
 <script>
@@ -21,6 +23,7 @@ export default {
 </script>
 
 <style>
+
 form {
   background-color: #f0f0f0;
   padding: 30px;
@@ -65,7 +68,7 @@ textarea ~ input[type="file"] {
 }
 button {
   padding: 10px;
-  background-color: #1a73e8;
+  background-color: #7a2828;
   color: white;
   border: none;
   border-radius: 5px;
@@ -74,7 +77,7 @@ button {
 }
 
 button:hover {
-  background-color: #1558b0;
+  background-color: #8e3030;
 }
 
 @media (max-width: 600px) {

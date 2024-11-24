@@ -59,6 +59,7 @@ export default {
 </script>
 
 <style>
+
 main {
   width: 90%;
   max-width: 1200px;
@@ -69,7 +70,7 @@ main {
 }
 .reset-button {
   align-items: center;
-  background-color: #723d3d;
+  background-color: #7a2828;
   border-radius: .25rem;
   color: #fff;
   font-size: 16px;
@@ -79,7 +80,7 @@ main {
 }
 
 .reset-button:hover {
-  background-color: #a45a5a;
+  background-color: #8e3030;
 }
 
 </style>

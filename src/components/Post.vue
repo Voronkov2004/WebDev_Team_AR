@@ -7,7 +7,7 @@
       :authorName="authorName" 
       :likes="likes" 
       @increment-like="incrementLikes"
-    />
+    />  
   </article>
   
 </template>
@@ -43,7 +43,7 @@ export default {
 <style scoped>
 
 .blogPost {
-  border: 3px solid black;
+  border:3px solid black;
   border-radius: 10px;
   width: 80%;
   max-width: 800px;

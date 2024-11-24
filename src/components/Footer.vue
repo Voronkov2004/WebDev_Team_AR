@@ -63,19 +63,26 @@ footer {
   position: relative;
   padding: 10px;
   display: flex;
-  justify-content: space-between;
+  align-items: center; /* Centers items vertically */
+  justify-content: center; /* Centers items horizontally */
   bottom: 0;
   left: 0;
-  margin-top: 90px;
-  margin-left: 20%;
-  margin-right: 20%;
-  width: 60%;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 100%;
   box-sizing: border-box;
+}
+.rightFot {
+  display: flex;
+  gap: 10px; 
+  align-items: center; 
+  justify-content: center; 
 }
 
 .rightFot > a {
   color: white;
   text-decoration: none;
-  gap: 10px;
+  font-size: 1rem;
 }
 </style>
