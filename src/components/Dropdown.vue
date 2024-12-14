@@ -22,16 +22,9 @@ export default {
     };
   },
   methods: {
-     /**
-     * Toggles the dropdown menu's visibility.
-     */
     toggleDropdown() {
       this.isDropdownVisible = !this.isDropdownVisible;
     },
-    /**
-     * Hides the dropdown menu.
-     * Triggered by clicking outside of the dropdown.
-     */
     hideDropdown() {
       this.isDropdownVisible = false;
     },
@@ -41,15 +34,16 @@ export default {
    * Adds a global click event listener to hide the dropdown when clicking outside.
    */
   mounted() {
-    document.addEventListener("click", this.hideDropdown);
+    document.addEventListener("click", this.hideDropdown); // Добавляет обработчик клика на документ.
   },
   /**
    * Lifecycle hook that runs before the component is destroyed.
    * Removes the global click event listener to prevent memory leaks.
    */
   beforeDestroy() {
-    document.removeEventListener("click", this.hideDropdown);
+    document.removeEventListener("click", this.hideDropdown); // Удаляет обработчик при удалении компонента.
   },
+
 };
 </script>
 

@@ -40,8 +40,8 @@ export default {
   name: "LoginComponent",
   data() {
     return {
-      email: "", // Stores the email input value
-      password: "",  // Stores the password input value
+      email: "",
+      password: "",
     };
   },
   methods: {
@@ -124,7 +124,7 @@ export default {
      * @param {Event} event - The input event.
      */
     clearPasswordError(event) {
-      event.target.setCustomValidity(""); 
+      event.target.setCustomValidity("");   // Очищает сообщение об ошибке при изменении.
     },
   },
 };

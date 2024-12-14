@@ -49,11 +49,11 @@ export default {
   computed: {
     ...mapGetters(["allPosts"]),// Maps the `allPosts` getter from Vuex
     posts() {
-      return this.allPosts;// Returns all posts for use in the template
+      return this.allPosts;
     },
   },
   methods: {
-    ...mapMutations(["incrementLikes", "resetLikes"]),// Maps Vuex mutations
+    ...mapMutations(["incrementLikes", "resetLikes"]),
   },
 };
 </script>

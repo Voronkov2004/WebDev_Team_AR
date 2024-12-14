@@ -3,15 +3,15 @@
     <img :src="pfp" :alt="pfpAlt" class="pfp" />
     <p class="post-date">{{ postedDate }}</p>
   </div>
-</template>
+</template>  //Отображает навигацию с аватаром автора и датой публикации.
 
 <script>
 export default {
   name: "PostNav",
   props: {
-    pfp: String,
-    pfpAlt: String,
-    postedDate: String,
+    pfp: String, // URL аватара.
+    pfpAlt: String, // Альтернативный текст для аватара.
+    postedDate: String, // Дата публикации поста.
   },
 };
 </script>

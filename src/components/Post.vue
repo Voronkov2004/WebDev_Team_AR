@@ -42,7 +42,7 @@ export default {
 Emitting an event allows the parent to know that something happened in the child and respond accordingly. */
   methods: {
     incrementLikes() {
-      this.$emit("increment-like");// Emit a custom "increment-like" event to the parent
+      this.$emit("increment-like");
     },
   },
 };
@@ -69,7 +69,5 @@ Emitting an event allows the parent to know that something happened in the child
   padding: 10px;
   
 }
-
-
-
 </style>
+//Компонент для отображения одного поста.

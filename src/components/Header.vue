@@ -21,8 +21,7 @@ import Dropdown from "@/components/Dropdown.vue";
 
 export default {
   name: "Header",
-  /* Registering the imported Dropdown component locally */
-  components: {// This makes the `Dropdown` component available for use in this component's template
+  components: {
     Dropdown,
   },
 };

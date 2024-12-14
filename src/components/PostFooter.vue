@@ -7,7 +7,9 @@
       <span class="like-counter">Likes: {{ likes }}</span>
     </div>
   </div>
-</template>
+</template>  // Нижняя часть поста с кнопкой "лайк".
+
+
 
 <script>
 export default {
@@ -24,7 +26,7 @@ export default {
   },*/
   methods: {
     incrementLikes() {
-      this.$emit("increment-like"); 
+      this.$emit("increment-like"); // Увеличивает количество лайков (через родителя).
     },
   },
 };
