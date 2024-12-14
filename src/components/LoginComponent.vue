@@ -14,18 +14,21 @@
           required
         />
 
-       
+       <!-- Clears custom validity message on input -->
         <input
           type="password"
           id="password"
           name="password"
           placeholder="Password"
           v-model="password"
-          @input="clearPasswordError" 
+          @input="clearPasswordError"  
           required
         />
 
-        <button type="submit">Log in</button>
+        <div class="button-container">
+          <button class="submit" type="submit">Log in</button>
+          <button class="signup" @click="$router.push('/signup')">Sign up</button>
+        </div>
       </form>
       <a href="#" class="forgot-password">Forgot password?</a>
     </div>
@@ -37,15 +40,19 @@ export default {
   name: "LoginComponent",
   data() {
     return {
-      email: "",
-      password: "",
+      email: "", // Stores the email input value
+      password: "",  // Stores the password input value
     };
   },
   methods: {
-    
-    validatePassword(event) {
-      const passwordField = event.target.querySelector("#password");
+     /**
+     * Validates the password field according to specific rules.
+     * @param {Event} event - The form submit event.
+     */
+    async validatePassword(event) {
+      const passwordField = event.target.querySelector("#password");// Gets the password input element
       const password = this.password;
+      const email = this.email; // Retrieves the current password value
 
       
       let errorMessage = "";
@@ -71,14 +78,51 @@ export default {
 
       
       if (errorMessage) {
-        passwordField.setCustomValidity(errorMessage);
-        passwordField.reportValidity(); 
-      } else {
-        passwordField.setCustomValidity(""); 
-        alert("Password is valid!"); 
-      }
-    },
+        passwordField.setCustomValidity(errorMessage); 
+        passwordField.reportValidity();
+        return; 
+      } 
 
+      passwordField.setCustomValidity("");
+
+      // sinding login request
+      // 
+      try{
+        const response = await fetch("http://localhost:3000/auth/login", {
+          method: "POST",
+          headers:{
+            "Content-Type": "application/json", // indicates that the data being sent in the body is in JSON format.
+          },
+          credentials: "include", // required too send cookies with the request
+          body: JSON.stringify({email, password}),
+        });
+
+        // error from the server
+        if (!response.ok){
+          const errorData = await response.json();
+          alert(`Login failed: ${errorData.error}`);
+          return;
+        }
+
+        const responseData = await response.json();
+        alert("Login successful!");
+        console.log("Logged in user ID:", responseData.user_id);
+
+        this.$router.push("/");
+      } catch (error) {
+        console.error("An error occurred:", error.message);
+        alert("An error occurred during login. Please try again.");
+      }
+
+
+
+    },
+    /**clear any custom validation error messages set on the password input field
+     *  when the user begins typing. */
+/**
+     * Clears any custom validity errors for the password field.
+     * @param {Event} event - The input event.
+     */
     clearPasswordError(event) {
       event.target.setCustomValidity(""); 
     },
@@ -138,6 +182,17 @@ button {
   color: white;
   font-size: 16px;
   cursor: pointer;
+}
+
+
+.button-container {
+  display: flex;
+  gap: 10px; 
+}
+
+.signup {
+  background-color: #925752; 
+  color: white;
 }
 
 button:hover {

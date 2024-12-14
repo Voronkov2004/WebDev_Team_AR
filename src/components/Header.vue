@@ -5,6 +5,7 @@
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/addpost">Add Post</router-link></li>
         <li><router-link to="/login">Login</router-link></li>
+        <li><router-link to="/signup">Sign Up</router-link></li>
       </div>
       <div class="right-side">
         <Dropdown></Dropdown>
@@ -14,11 +15,13 @@
 </template>
 
 <script>
+/* Importing the Dropdown component */
 import Dropdown from "@/components/Dropdown.vue";
 
 export default {
   name: "Header",
-  components: {
+  /* Registering the imported Dropdown component locally */
+  components: {// This makes the `Dropdown` component available for use in this component's template
     Dropdown,
   },
 };

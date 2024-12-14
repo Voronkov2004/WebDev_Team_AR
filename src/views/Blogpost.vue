@@ -3,7 +3,7 @@
     <Header></Header>
     <Sidebars></Sidebars>
     <main>
-      
+      <!--sends data to child post-->
       <Post
         v-for="post in posts"
         :key="post.postID"
@@ -47,13 +47,13 @@ export default {
     Post,
   },
   computed: {
-    ...mapGetters(["allPosts"]),
+    ...mapGetters(["allPosts"]),// Maps the `allPosts` getter from Vuex
     posts() {
-      return this.allPosts;
+      return this.allPosts;// Returns all posts for use in the template
     },
   },
   methods: {
-    ...mapMutations(["incrementLikes", "resetLikes"]),
+    ...mapMutations(["incrementLikes", "resetLikes"]),// Maps Vuex mutations
   },
 };
 </script>

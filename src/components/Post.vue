@@ -1,5 +1,6 @@
 <template>
   <article class="blogPost">
+    
     <PostNav :pfp="pfp" :pfpAlt="pfpAlt" :postedDate="postedDate" />
     <img :src="postPicture" :alt="postPictureAlt" class="post-image" />
     <PostFooter 
@@ -15,13 +16,15 @@
 <script>
 import PostNav from "./PostNav.vue";
 import PostFooter from "./PostFooter.vue";
-
+/**Props (pfp, pfpAlt, postedDate) 
+ * are passed from the Post component to PostNav. */
 export default {
   name: "Post",
   components: {
     PostNav,
     PostFooter,
   },
+  /*send via props components to child elements*/
   props: {
     postPicture: String,
     postPictureAlt: String,
@@ -32,9 +35,14 @@ export default {
     postedDate: String,
     likes: Number,
   },
+    /**
+     * Emits an event to the parent component to increment the like count.
+     */
+    /**The child (PostFooter) cannot directly modify the parent's data, adhering to Vue's principles.
+Emitting an event allows the parent to know that something happened in the child and respond accordingly. */
   methods: {
     incrementLikes() {
-      this.$emit("increment-like");
+      this.$emit("increment-like");// Emit a custom "increment-like" event to the parent
     },
   },
 };

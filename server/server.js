@@ -53,27 +53,30 @@ app.get('/test-db', async (req, res) => {
     
 
 // Checks if the user is authenticated by verifying the JWT stored in cookies
-app.get('/auth/authenticate', async(req, res) => {
+app.get('/auth/authenticate', async (req, res) => {
     console.log('authentication request has been arrived');
-    const token = req.cookies.jwt; // assign the token named jwt to the token const
-    //console.log("token " + token);
-    let authenticated = false; // a user is not authenticated until proven the opposite
+    const token = req.cookies.jwt;
+    let authenticated = false;
+
     try {
+        if (!token) {
+            console.log('No token provided. User is not authenticated.');
+            return res.send({ authenticated: false });
+        }
         if (token) { //checks if the token exists
-            //jwt.verify(token, secretOrPublicKey, [options, callback]) verify a token
             await jwt.verify(token, secret, (err) => { //token exists, now we try to verify it
-                if (err) { // not verified, redirect to login page
+                if (err) { // not verified
                     console.log(err.message);
                     console.log('token is not verified');
                     res.send({ "authenticated": authenticated }); // authenticated = false
-                } else { // token exists and it is verified 
-                    console.log('author is authinticated');
+                } else { // token exists and it is verified
+                    console.log('author is authenticated');
                     authenticated = true;
                     res.send({ "authenticated": authenticated }); // authenticated = true
                 }
-            })
+            });
         } else { //applies when the token does not exist
-            console.log('author is not authinticated');
+            console.log('author is not authenticated');
             res.send({ "authenticated": authenticated }); // authenticated = false
         }
     } catch (err) {
@@ -129,7 +132,7 @@ app.post('/auth/login', async(req, res) => {
 
         //Checking if the password is correct
         const validPassword = await bcrypt.compare(password, user.rows[0].password);
-        console.log(user.rows[0].password);
+        // console.log(user.rows[0].password);
         //console.log("validPassword:" + validPassword);
         if (!validPassword) return res.status(401).json({ error: "Incorrect password" });
 
