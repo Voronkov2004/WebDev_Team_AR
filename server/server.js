@@ -53,36 +53,28 @@ app.get('/test-db', async (req, res) => {
     
 
 // Checks if the user is authenticated by verifying the JWT stored in cookies
-app.get('/auth/authenticate', async (req, res) => {
-    console.log('authentication request has been arrived');
+app.get('/auth/authenticate', (req, res) => {
+    console.log('Authentication request received.');
     const token = req.cookies.jwt;
-    let authenticated = false;
 
-    try {
-        if (!token) {
-            console.log('No token provided. User is not authenticated.');
+    if (!token) {
+        console.log('No JWT token found. User is not authenticated.');
+        return res.send({ authenticated: false });
+    }
+
+    jwt.verify(token, secret, (err, decoded) => {
+        if (err) {
+            console.log('JWT verification failed:', err.message);
+            // if token is expired
+            if (err.name === 'TokenExpiredError') {
+                console.log('Token has expired.');
+            }
             return res.send({ authenticated: false });
         }
-        if (token) { //checks if the token exists
-            await jwt.verify(token, secret, (err) => { //token exists, now we try to verify it
-                if (err) { // not verified
-                    console.log(err.message);
-                    console.log('token is not verified');
-                    res.send({ "authenticated": authenticated }); // authenticated = false
-                } else { // token exists and it is verified
-                    console.log('author is authenticated');
-                    authenticated = true;
-                    res.send({ "authenticated": authenticated }); // authenticated = true
-                }
-            });
-        } else { //applies when the token does not exist
-            console.log('author is not authenticated');
-            res.send({ "authenticated": authenticated }); // authenticated = false
-        }
-    } catch (err) {
-        console.error(err.message);
-        res.status(400).send(err.message);
-    }
+
+        console.log('JWT verified successfully. User is authenticated.');
+        res.send({ authenticated: true });
+    });
 });
 
 app.post('/auth/signup', async(req, res) => {

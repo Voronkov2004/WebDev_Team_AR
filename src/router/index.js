@@ -3,6 +3,7 @@ import Blogpost from "@/views/Blogpost.vue";
 import AddPost from "@/views/AddPost.vue";
 import Login from "@/views/Login.vue";
 import SignUp from "@/views/SignUp.vue";
+import Contact from "@/views/Contact.vue";
 
 
 
@@ -23,6 +24,7 @@ const routes = [
     path: "/addpost",
     name: "addpost",
     component: AddPost,
+    meta: { requiresAuth: true },
   },
   {
     path: "/login",
@@ -33,6 +35,11 @@ const routes = [
     path: "/signup",
     name: "signup",
     component: SignUp,
+  },
+  {
+    path: "/contact",
+    name: "contact",
+    component: Contact,
   }
 ];
 

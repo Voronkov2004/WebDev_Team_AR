@@ -8,6 +8,7 @@
         <li><router-link to="/signup">Sign Up</router-link></li>
       </div>
       <div class="right-side">
+        <li><router-link to="/contact">Contact</router-link></li>
         <Dropdown></Dropdown>
       </div>
     </ul>
@@ -82,5 +83,9 @@ li > a {
 
 li > a:hover {
   color: white;
+}
+.right-side{
+  display: flex;
+  align-items: center;
 }
 </style>
