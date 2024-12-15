@@ -15,7 +15,7 @@
           ></textarea>
         </div>
         <div class="form-group">
-          <label for="file-upload">Select file</label>
+          <label for="file-upload">Select file (optional)</label>
           <input
             type="file"
             id="file-upload"
@@ -44,8 +44,14 @@ export default {
     },
     async submitPost() {
       try {
-        if (!this.body) {
+        if (!this.body.trim()) {
           alert("Post body is required.");
+          return;
+        }
+
+        const token = localStorage.getItem("jwt");
+        if (!token) {
+          alert("You are not logged in. Please log in first to create a post.");
           return;
         }
 
@@ -55,22 +61,24 @@ export default {
           formData.append("file", this.file);
         }
 
+        console.log("Sending token:", token);
         const response = await fetch("http://localhost:3000/posts", {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`, // Только JWT
+            Authorization: `Bearer ${token}`,
           },
           body: formData,
         });
 
-
         if (response.ok) {
+          const newPost = await response.json();
           alert("Post created successfully!");
-          this.$router.push("/"); // Возвращаемся на главную страницу
+          console.log("Created post:", newPost);
+          this.$router.push("/");
         } else {
           const error = await response.json();
-          console.error("Failed to create post:", error.message);
-          alert(`Failed to create post: ${error.message}`);
+          console.error("Failed to create post:", error.error || error.message);
+          alert(`Failed to create post: ${error.error || error.message}`);
         }
       } catch (error) {
         console.error("Error creating post:", error.message);
@@ -90,6 +98,11 @@ export default {
   padding: 20px;
 }
 
+.post-container {
+  width: 100%;
+  max-width: 400px;
+}
+
 form {
   background-color: #f0f0f0;
   padding: 30px;
@@ -99,7 +112,6 @@ form {
   flex-direction: column;
   gap: 15px;
   width: 100%;
-  max-width: 400px;
 }
 
 .form-group {

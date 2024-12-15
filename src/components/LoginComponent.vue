@@ -4,7 +4,6 @@
       <h1>PostIt</h1>
 
       <form @submit.prevent="validatePassword">
-        
         <input
           type="email"
           id="email"
@@ -14,20 +13,22 @@
           required
         />
 
-       <!-- Clears custom validity message on input -->
+        <!-- Clears custom validity message on input -->
         <input
           type="password"
           id="password"
           name="password"
           placeholder="Password"
           v-model="password"
-          @input="clearPasswordError"  
+          @input="clearPasswordError"
           required
         />
 
         <div class="button-container">
           <button class="submit" type="submit">Log in</button>
-          <button class="signup" @click="$router.push('/signup')">Sign up</button>
+          <button class="signup" @click="$router.push('/signup')">
+            Sign up
+          </button>
         </div>
       </form>
       <a href="#" class="forgot-password">Forgot password?</a>
@@ -40,25 +41,20 @@ export default {
   name: "LoginComponent",
   data() {
     return {
-
       email: "", // Stores the email input value
-      password: "",  // Stores the password input value
-
-
-
+      password: "", // Stores the password input value
     };
   },
   methods: {
-     /**
+    /**
      * Validates the password field according to specific rules.
      * @param {Event} event - The form submit event.
      */
     async validatePassword(event) {
-      const passwordField = event.target.querySelector("#password");// Gets the password input element
+      const passwordField = event.target.querySelector("#password");
       const password = this.password;
-      const email = this.email; // Retrieves the current password value
+      const email = this.email;
 
-      
       let errorMessage = "";
 
       if (password.length < 8 || password.length >= 15) {
@@ -68,10 +64,12 @@ export default {
         errorMessage += "Password must start with an uppercase letter.\n";
       }
       if (!/[A-Z]/.test(password)) {
-        errorMessage += "Password must include at least one uppercase letter.\n";
+        errorMessage +=
+          "Password must include at least one uppercase letter.\n";
       }
       if ((password.match(/[a-z]/g) || []).length < 2) {
-        errorMessage += "Password must include at least two lowercase letters.\n";
+        errorMessage +=
+          "Password must include at least two lowercase letters.\n";
       }
       if (!/\d/.test(password)) {
         errorMessage += "Password must include at least one numeric value.\n";
@@ -80,29 +78,27 @@ export default {
         errorMessage += "Password must include the character '_'.\n";
       }
 
-      
       if (errorMessage) {
-        passwordField.setCustomValidity(errorMessage); 
+        passwordField.setCustomValidity(errorMessage);
         passwordField.reportValidity();
-        return; 
-      } 
+        return;
+      }
 
       passwordField.setCustomValidity("");
 
-      // sinding login request
-      // 
-      try{
+      // Send login request
+      try {
         const response = await fetch("http://localhost:3000/auth/login", {
           method: "POST",
-          headers:{
-            "Content-Type": "application/json", // indicates that the data being sent in the body is in JSON format.
+          headers: {
+            "Content-Type": "application/json",
           },
-          credentials: "include", // required too send cookies with the request
-          body: JSON.stringify({email, password}),
+          // If you don't rely on cookies and plan to use localStorage instead, you can remove credentials include here.
+          credentials: "include",
+          body: JSON.stringify({ email, password }),
         });
 
-        // error from the server
-        if (!response.ok){
+        if (!response.ok) {
           const errorData = await response.json();
           alert(`Login failed: ${errorData.error}`);
           return;
@@ -110,25 +106,32 @@ export default {
 
         const responseData = await response.json();
         alert("Login successful!");
-        console.log("Logged in user ID:", responseData.user_id);
+
+        // Store the JWT in localStorage
+        if (responseData.jwt) {
+          localStorage.setItem("jwt", responseData.jwt);
+          console.log("JWT stored in localStorage:", responseData.jwt);
+        }
+
+        // For debugging, also log user_id if returned by server
+        if (responseData.user_id) {
+          console.log("Logged in user ID:", responseData.user_id);
+        }
 
         this.$router.push("/");
       } catch (error) {
         console.error("An error occurred:", error.message);
         alert("An error occurred during login. Please try again.");
       }
-
-
-
     },
     /**clear any custom validation error messages set on the password input field
      *  when the user begins typing. */
-/**
+    /**
      * Clears any custom validity errors for the password field.
      * @param {Event} event - The input event.
      */
     clearPasswordError(event) {
-      event.target.setCustomValidity("");   // Очищает сообщение об ошибке при изменении.
+      event.target.setCustomValidity(""); // Очищает сообщение об ошибке при изменении.
     },
   },
 };
@@ -139,9 +142,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; 
+  min-height: 100vh;
   background-color: #4a4a4a;
-  padding: 80px; 
+  padding: 80px;
   box-sizing: center;
 }
 
@@ -151,15 +154,13 @@ export default {
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 500px; 
+  max-width: 500px;
   text-align: center;
-  box-sizing: border-box; 
-  
+  box-sizing: border-box;
 }
 form {
-  margin-left: -30px; 
+  margin-left: -30px;
 }
-
 
 .login-box h1 {
   font-size: 24px;
@@ -188,14 +189,13 @@ button {
   cursor: pointer;
 }
 
-
 .button-container {
   display: flex;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .signup {
-  background-color: #925752; 
+  background-color: #925752;
   color: white;
 }
 

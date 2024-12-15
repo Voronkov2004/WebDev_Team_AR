@@ -1,34 +1,31 @@
 <template>
   <div class="postNav">
-    <img :src="pfp" :alt="pfpAlt" class="pfp" />
+    <!-- Only render the pfp image if pfp is truthy -->
+    <img v-if="pfp" :src="pfp" :alt="pfpAlt" class="pfp" />
     <p class="postCreated">
-      <!-- Проверяем дату и форматируем -->
       {{
         postedDate
-          ? new Date(postedDate).toLocaleString('en-GB', {
-              day: '2-digit',
-              month: 'short',
-              year: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit',
-              hour12: false
+          ? new Date(postedDate).toLocaleString("en-GB", {
+              day: "2-digit",
+              month: "short",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
             })
           : "Date Not Available"
       }}
     </p>
   </div>
-</template>  //Отображает навигацию с аватаром автора и датой публикации.
-
-
-
+</template>
 
 <script>
 export default {
   name: "PostNav",
   props: {
-    pfp: String, // URL аватара.
-    pfpAlt: String, // Альтернативный текст для аватара.
-    postedDate: String, // Дата публикации поста.
+    pfp: String,
+    pfpAlt: String,
+    postedDate: String,
   },
 };
 </script>
@@ -55,5 +52,4 @@ export default {
   font-size: 1.2em;
   display: flex;
 }
-
 </style>

@@ -1,21 +1,21 @@
- // database.js
- const Pool = require('pg').Pool;
- const pool = new Pool({
-     user: "postgres",
-     password: "password",
-     database: "argroup",
-     host: "localhost",
-     port: "5433"
- });
- const execute = async(query) => {
-    try {
-        await pool.connect(); // create a connection
-        await pool.query(query); // executes a query
-        return true;
-    } catch (error) {
-        console.error(error.stack);
-        return false;
-    }
+// database.js
+const Pool = require("pg").Pool;
+const pool = new Pool({
+  user: "voronkov",
+  password: "",
+  database: "argroup",
+  host: "localhost",
+  port: "5432",
+});
+const execute = async (query) => {
+  try {
+    await pool.connect(); // create a connection
+    await pool.query(query); // executes a query
+    return true;
+  } catch (error) {
+    console.error(error.stack);
+    return false;
+  }
 };
 
 /* 
@@ -30,12 +30,9 @@ const createTblQuery = `
         password VARCHAR(200) NOT NULL 
     );`;
 
-
-
 const addTestUser = `
     INSERT INTO users (email, password) VALUES 
     ('test@example.com', '$2b$10$h/29CzysistyaKXfU8cHmu4FU94ZF1FvvARrWRXK1rt4a6RSc6u8q');`;
- 
 
 const createPostsTblQuery = `
 CREATE TABLE IF NOT EXISTS posts (
@@ -47,61 +44,66 @@ CREATE TABLE IF NOT EXISTS posts (
     postimage VARCHAR(300)
 );`;
 
-
 (async () => {
-    const tableCreated = await execute(createTblQuery);
-    if (tableCreated) {
-        console.log('Table "users" is created or already exists');
-        
-    
-    } else {
-        console.log('Failed to create table "users"');
-    }
+  const tableCreated = await execute(createTblQuery);
+  if (tableCreated) {
+    console.log('Table "users" is created or already exists');
+  } else {
+    console.log('Failed to create table "users"');
+  }
 })();
 
- 
 module.exports = pool;
 
-const fs = require('fs'); 
+const fs = require("fs");
 
 const importPosts = async () => {
-    try {
-       
-        const path = require('path');
-        const postsFilePath = path.join(__dirname, '../public/data/posts.json');
+  try {
+    const path = require("path");
+    const postsFilePath = path.join(__dirname, "../public/data/posts.json");
 
-        const postsData = JSON.parse(fs.readFileSync(postsFilePath, 'utf-8'));
+    const postsData = JSON.parse(fs.readFileSync(postsFilePath, "utf-8"));
 
+    const insertPostQuery = `
+        INSERT INTO posts (postauthorname, postauthorpfp, postcreated, posttext, postimage)
+        VALUES ($1, $2, $3, $4, $5)
+        RETURNING *;`;
 
-        for (const post of postsData) {
-        
-            const insertPostQuery = `
-                INSERT INTO posts (postid, postauthorname, postauthorpfp, postcreated, posttext, postimage)
-                VALUES ($1, $2, $3, $4, $5, $6)
-                ON CONFLICT (postid) DO NOTHING;`; 
+    for (const post of postsData) {
+      const pfp =
+        post.postAuthorPFP && post.postAuthorPFP.trim() !== ""
+          ? post.postAuthorPFP
+          : null;
+      const image =
+        post.postImage && post.postImage.trim() !== "" ? post.postImage : null;
 
-            await pool.query(insertPostQuery, [
-                post.postID,
-                post.postAuthorName,
-                post.postAuthorPFP,
-                post.postCreated,
-                post.postText,
-                post.postImage
-            ]);
-        }
-
-        console.log("Posts imported successfully!");
-    } catch (error) {
-        console.error("Error importing posts:", error.message);
+      await pool.query(insertPostQuery, [
+        post.postAuthorName,
+        pfp,
+        post.postCreated,
+        post.postText,
+        image,
+      ]);
     }
+    console.log("Posts imported successfully!");
+  } catch (error) {
+    console.error("Error importing posts:", error.message);
+  }
 };
 
 (async () => {
-    const tableCreated = await execute(createPostsTblQuery);
-    if (tableCreated) {
-        console.log('Table "posts" is created or already exists');
-        await importPosts(); 
+  const tableCreated = await execute(createPostsTblQuery);
+  if (tableCreated) {
+    console.log('Table "posts" is created or already exists');
+
+    // Optional: only import if no posts exist
+    const { rows } = await pool.query("SELECT COUNT(*) FROM posts");
+    if (parseInt(rows[0].count, 10) === 0) {
+      await importPosts();
     } else {
-        console.log('Failed to create table "posts"');
+      console.log("Posts already imported, skipping...");
     }
+  } else {
+    console.log('Failed to create table "posts"');
+  }
 })();
