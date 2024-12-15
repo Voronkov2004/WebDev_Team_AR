@@ -1,5 +1,4 @@
 import { createStore } from "vuex";
-import postsData from "@/data/posts.json"; 
 
 export default createStore({
   strict: true,
@@ -13,7 +12,7 @@ export default createStore({
       return state.posts; // Returns all posts
     },
     postById: (state) => (id) => {
-      return state.posts.find((post) => post.postID === id); // Finds a post by its I
+      return state.posts.find((post) => post.postID === id); // Finds a post by its ID
     },
   },
 
@@ -29,20 +28,29 @@ export default createStore({
     },
     resetLikes(state) {
       state.posts.forEach((post) => {
+        
         post.likes = 0; 
       });
     },
   },
-/**Actions are used to perform asynchronous operations (e.g., 
- * fetching data from an API, processing data) before committing 
- * a mutation to update the state. */
+
   actions: {
-    loadPosts({ commit }) {
-      const postsWithLikes = postsData.map((post) => ({
-        ...post,
-        likes: 0, // Adds a `likes` property to each post
-      }));
-      commit("setPosts", postsWithLikes); // Commits the `setPosts` mutation
+    async loadPosts({ commit }) {
+      try {
+        const response = await fetch("/public/data/posts.json"); 
+        if (response.ok) {
+          const postsData = await response.json();
+          const postsWithLikes = postsData.map((post) => ({
+            ...post,
+            likes: 0, // Adds a `likes` property to each post
+          }));
+          commit("setPosts", postsWithLikes); // Commits the `setPosts` mutation
+        } else {
+          console.error("Failed to fetch posts.json");
+        }
+      } catch (error) {
+        console.error("Error loading posts.json:", error.message);
+      }
     },
   },
 });

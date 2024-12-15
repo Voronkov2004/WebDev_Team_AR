@@ -9,7 +9,7 @@
     <div class="dropdown-menu" v-show="isDropdownVisible" @click.stop>
       <p>John Donkey</p>
       <p>farmer@ut.ee</p>
-      <a href="logout.html">Logout</a>
+      <button @click="logout" class="logout-btn">Logout</button>
     </div>
   </div>
 </template>
@@ -27,6 +27,20 @@ export default {
     },
     hideDropdown() {
       this.isDropdownVisible = false;
+    },
+    logout() {
+    fetch('http://localhost:3000/auth/logout', {
+      method: 'GET',
+      credentials: 'include', // Удаляет cookie с JWT
+    })
+      .then(() => {
+        localStorage.removeItem('jwt'); // Удалить JWT из локального хранилища
+        this.$router.push('/login'); // Перенаправить пользователя на страницу входа
+      })
+      .catch((error) => {
+        console.error('Logout failed:', error);
+        alert('Failed to logout.');
+      });
     },
   },
   /**
@@ -80,4 +94,20 @@ export default {
 .profile-icon {
   cursor: pointer;
 }
+
+.logout-btn {
+  background-color: #7a2828;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%; 
+  text-align: center;
+}
+
+.logout-btn:hover {
+  background-color: #8e3030;
+}
+
 </style>

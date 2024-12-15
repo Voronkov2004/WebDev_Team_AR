@@ -7,6 +7,8 @@ import Contact from "@/views/Contact.vue";
 
 
 
+
+
 function isAuthenticated() {
   // Check if the JWT exists in localStorage
   return !!localStorage.getItem("jwt");

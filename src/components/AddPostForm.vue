@@ -1,28 +1,94 @@
 <template>
-<div class = container>
-  <div class="post-container">
-    <form id="add-post-form" action="index.html" method="GET">
-      <div class="form-group">
-        <label for="post-body">Post body</label>
-        <textarea id="post-body" name="post-body" rows="4" cols="30"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="file-upload">Select file</label>
-        <input type="file" id="file-upload" name="file-upload" />
-      </div>
-      <button type="submit">Create post</button>
-    </form>
+  <div class="container">
+    <div class="post-container">
+      <form @submit.prevent="submitPost">
+        <div class="form-group">
+          <label for="post-body">Post body</label>
+          <textarea
+            id="post-body"
+            v-model="body"
+            name="post-body"
+            rows="4"
+            cols="30"
+            placeholder="Write your post here..."
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="file-upload">Select file</label>
+          <input
+            type="file"
+            id="file-upload"
+            @change="handleFileUpload"
+            accept="image/*"
+          />
+        </div>
+        <button type="submit">Create Post</button>
+      </form>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
 export default {
   name: "AddPostForm",
+  data() {
+    return {
+      body: "",
+      file: null,
+    };
+  },
+  methods: {
+    handleFileUpload(event) {
+      this.file = event.target.files[0];
+    },
+    async submitPost() {
+      try {
+        if (!this.body) {
+          alert("Post body is required.");
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append("body", this.body);
+        if (this.file) {
+          formData.append("file", this.file);
+        }
+
+        const response = await fetch("http://localhost:3000/posts", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`, // Только JWT
+          },
+          body: formData,
+        });
+
+
+        if (response.ok) {
+          alert("Post created successfully!");
+          this.$router.push("/"); // Возвращаемся на главную страницу
+        } else {
+          const error = await response.json();
+          console.error("Failed to create post:", error.message);
+          alert(`Failed to create post: ${error.message}`);
+        }
+      } catch (error) {
+        console.error("Error creating post:", error.message);
+        alert("An error occurred while creating the post.");
+      }
+    },
+  },
 };
 </script>
 
 <style>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
 
 form {
   background-color: #f0f0f0;
@@ -38,34 +104,22 @@ form {
 
 .form-group {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
 }
 
 .form-group > label {
   font-weight: bold;
-}
-
-label {
-  font-size: 16px;
+  margin-bottom: 5px;
 }
 
 textarea,
 input[type="file"] {
-  margin-top: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
-  width: 70%;
+  width: 100%;
 }
 
-textarea + button {
-  margin-top: 20px;
-}
-
-textarea ~ input[type="file"] {
-  margin-top: 10;
-}
 button {
   padding: 10px;
   background-color: #7a2828;
@@ -78,16 +132,5 @@ button {
 
 button:hover {
   background-color: #8e3030;
-}
-
-@media (max-width: 600px) {
-  .navbar {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  form {
-    width: 90%;
-  }
 }
 </style>

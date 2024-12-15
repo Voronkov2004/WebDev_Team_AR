@@ -1,9 +1,26 @@
 <template>
   <div class="postNav">
     <img :src="pfp" :alt="pfpAlt" class="pfp" />
-    <p class="post-date">{{ postedDate }}</p>
+    <p class="postCreated">
+      <!-- Проверяем дату и форматируем -->
+      {{
+        postedDate
+          ? new Date(postedDate).toLocaleString('en-GB', {
+              day: '2-digit',
+              month: 'short',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false
+            })
+          : "Date Not Available"
+      }}
+    </p>
   </div>
 </template>  //Отображает навигацию с аватаром автора и датой публикации.
+
+
+
 
 <script>
 export default {
@@ -28,8 +45,8 @@ export default {
 }
 
 .postNav > img {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
 }
 

@@ -40,8 +40,12 @@ export default {
   name: "LoginComponent",
   data() {
     return {
-      email: "",
-      password: "",
+
+      email: "", // Stores the email input value
+      password: "",  // Stores the password input value
+
+
+
     };
   },
   methods: {

@@ -3,7 +3,7 @@
     <h1>{{ textPost }}</h1>
     <p>Written by: {{ authorName }}</p>
     <div class="likeButton">
-      <button @click="incrementLikes">Like</button>
+      <button @click.stop="incrementLikes">Like</button>
       <span class="like-counter">Likes: {{ likes }}</span>
     </div>
   </div>
@@ -26,7 +26,7 @@ export default {
   },*/
   methods: {
     incrementLikes() {
-      this.$emit("increment-like"); // Увеличивает количество лайков (через родителя).
+      this.$emit("increment-like"); 
     },
   },
 };
