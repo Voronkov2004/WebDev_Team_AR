@@ -2,10 +2,10 @@
  const Pool = require('pg').Pool;
  const pool = new Pool({
      user: "postgres",
-     password: "T3v3n3raja",
+     password: "password",
      database: "argroup",
      host: "localhost",
-     port: "5432"
+     port: "5433"
  });
  const execute = async(query) => {
     try {
@@ -52,12 +52,8 @@ CREATE TABLE IF NOT EXISTS posts (
     const tableCreated = await execute(createTblQuery);
     if (tableCreated) {
         console.log('Table "users" is created or already exists');
-        const userAdded = await execute(addTestUser);
-        if (userAdded) {
-            console.log('Test user is added');
-        } else {
-            console.log('Failed to add test user');
-        }
+        
+    
     } else {
         console.log('Failed to create table "users"');
     }
