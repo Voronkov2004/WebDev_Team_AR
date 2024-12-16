@@ -119,7 +119,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["allPosts"]), // Maps the `allPosts` getter from Vuex
+    ...mapGetters(["allPosts"]), // Maps the allPosts getter from Vuex
     posts() {
       return this.posts.length > 0 ? this.posts : this.allPosts;
     },
@@ -204,10 +204,11 @@ export default {
       if (!confirmation) return;
 
       try {
+        const token = localStorage.getItem("jwt");
         const response = await fetch("http://localhost:3000/posts", {
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 

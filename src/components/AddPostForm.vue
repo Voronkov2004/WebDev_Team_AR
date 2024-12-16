@@ -7,7 +7,6 @@
           <textarea
             id="post-body"
             v-model="body"
-            name="post-body"
             rows="4"
             cols="30"
             placeholder="Write your post here..."
@@ -61,7 +60,6 @@ export default {
           formData.append("file", this.file);
         }
 
-        console.log("Sending token:", token);
         const response = await fetch("http://localhost:3000/posts", {
           method: "POST",
           headers: {
@@ -97,12 +95,10 @@ export default {
   min-height: 100vh;
   padding: 20px;
 }
-
 .post-container {
   width: 100%;
   max-width: 400px;
 }
-
 form {
   background-color: #f0f0f0;
   padding: 30px;
@@ -111,19 +107,15 @@ form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  width: 100%;
 }
-
 .form-group {
   display: flex;
   flex-direction: column;
 }
-
 .form-group > label {
   font-weight: bold;
   margin-bottom: 5px;
 }
-
 textarea,
 input[type="file"] {
   border: 1px solid #ccc;
@@ -131,7 +123,6 @@ input[type="file"] {
   padding: 10px;
   width: 100%;
 }
-
 button {
   padding: 10px;
   background-color: #7a2828;
@@ -141,7 +132,6 @@ button {
   font-size: 16px;
   cursor: pointer;
 }
-
 button:hover {
   background-color: #8e3030;
 }
